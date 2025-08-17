@@ -225,7 +225,7 @@
         <p class="subtitle">Commandez vos gourmandiz' juste ici !</p>
         
         <div class="minimum-notice">
-            ⚠️ 10 PIÈCES MINIMUM PAR VARIÉTÉ
+            ⚠️ 10 PIÈCES MINIMUM PAR VARIÉTÉ (sauf Box' Découvertes)
         </div>
 
         <form id="orderForm">
@@ -762,10 +762,13 @@
             const quantity = parseInt(document.querySelector(`input[name="${product}_quantity"]`).value) || 0;
             const priceElement = document.getElementById(`${product}_price`);
             
+            // Les box découvertes n'ont pas de minimum de 10
+            const isBoxProduct = ['box_salee', 'box_sucree', 'box_mixte'].includes(product);
+            
             if (quantity === 0) {
                 priceElement.textContent = '0€';
                 delete cart[product];
-            } else if (quantity < 10) {
+            } else if (!isBoxProduct && quantity < 10) {
                 priceElement.textContent = 'Minimum 10 pièces';
                 priceElement.style.background = '#ff6b6b';
                 priceElement.style.color = 'white';
@@ -1025,5 +1028,5 @@
             alert("Votre commande va s'ouvrir dans votre application email. Envoyez l'email pour finaliser votre commande !");
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9707bcdc14eb3843',t:'MTc1NTQxODY3NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9708d71f2242bb27',t:'MTc1NTQzMDIzNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
