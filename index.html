@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commande Pâtisseries Denis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8debd;
+            color: #b28538;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #02216d;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #b28538;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .minimum-notice {
+            background: #02216d;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .product-section {
+            margin-bottom: 30px;
+            border: 2px solid #ceb290;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .product-title {
+            color: #02216d;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .product-row {
+            display: grid;
+            grid-template-columns: 1fr 100px 150px;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .product-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        label {
+            color: #b28538;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input, select, textarea {
+            padding: 10px;
+            border: 2px solid #ceb290;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #02216d;
+        }
+
+        .quantity-input {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .price-display {
+            background: #ceb290;
+            color: #02216d;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .delivery-section, .customer-section {
+            background: #f8debd;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .section-title {
+            color: #02216d;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .total-section {
+            background: #02216d;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .total-line {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .total-final {
+            border-top: 2px solid white;
+            padding-top: 10px;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+
+        .cart-summary {
+            background: #ceb290;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .cart-item {
+            padding: 10px;
+            border-bottom: 1px solid #b28538;
+            margin-bottom: 10px;
+        }
+
+        .submit-btn {
+            background: #ceb290;
+            color: #02216d;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #b28538;
+            color: white;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+        }
+
+        @media (max-width: 768px) {
+            .product-row {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍴 Apéro & Gourmandiz'</h1>
+        <p class="subtitle">Commandez vos gourmandiz' juste ici !</p>
+        
+        <div class="minimum-notice">
+            ⚠️ 10 PIÈCES MINIMUM PAR VARIÉTÉ
+        </div>
+
+        <form id="orderForm">
+            <!-- CÔTÉ SALÉ -->
+            <div style="background: #02216d; color: white; padding: 15px; border-radius: 10px; text-align: center; margin: 30px 0; font-size: 1.5em; font-weight: bold;">
+                🥪 CÔTÉ SALÉ
+            </div>
+
+            <!-- Mini Panini -->
+            <div class="product-section">
+                <div class="product-title">🥪 Mini Panini (1,70€ l'unité)</div>
+                <div class="product-row">
+                    <div class="product-options">
+                        <label>Saveur :</label>
+                        <select name="panini_flavor">
+                            <option value="">Choisir une saveur</option>
+                            <option value="Jambon">Jambon</option>
+                            <option value="Fromage">Fromage</option>
+                            <option value="Jambon-fromage">Jambon-fromage</option>
+                        </select>
+                    </div>
+                    <input type="number" name="panini_quantity" class="quantity-input" placeholder="Qté" min="0" onchange="calculatePrice('panini', 1.7)">
+                    <div class="price-display" id="panini_price">0€</div>
+                </div>
+            </div>
+
+            <!-- Mini Burger Poulet -->
+            <div class="product-section">
+                <div class="product-title">🍔 Mini Burger Poulet (1,70€ l'unité)</div>
+                <div class="product-row">
+                    <div class="product-options"></div>
+                    <input type="number" name="burger_poulet_quantity" class="quantity-input" placeholder="Qté" min="0" onchange="calculatePrice('burger_poulet', 1.7)">
+                    <div class="price-display" id="burger_poulet_price">0€</div>
+                </div>
+            </div>
+
+            <!-- Mini Burger Saumon -->
+            <div class="product-section">
+                <div class="product-title">🍔 Mini Burger Saumon (1,80€ l'unité)</div>
+                <div class="product-row">
+                    <div class="product-options"></div>
+                    <input type="number" name="burger_saumon_quantity" class="quantity-input" placeholder="Qté" min="0" onchange="calculatePrice('burger_saumon', 1.8)">
+                    <div class="price-display" id="burger_saumon_price">0€</div>
+                </div>
+            </div>
+
+            <!-- Mini Pizza Olives -->
+            <div class="product-section">
+                <div class="product-title">🍕 Mini Pizza Olives (1,80€ l'unité)</div>
+                <div class="product-row">
+                    <div class="product-options"></div>
+                    <input type="number" name="pizza_quantity" class="quantity-input" placeholder="Qté" min="0" onchange="calculatePrice('pizza', 1.8)">
+                    <div class="price-display" id="pizza_price">0€</div>
+                </div>
+            </div>
+
+            <!-- Mini Hot Dog -->
+            <div class="product-section">
+                <div class="product-title">🌭 Mini Hot Dog (1,70€ l'unité)</div>
+                <div class="product-row">
+                    <div class="product-options"></div>
+                    <input type="number" name="hotdog_quantity" class="quantity-input" placeholder="Qté" min="0" onchange="calculatePrice('hotdog', 1.7)">
+                    <div class="price-display" id="hotdog_price">0€</div>
+                </div>
+            </div>
+
+            <!-- Mini Pita Poulet -->
+            <div class="product-section">
+                <div class="product-title">🥙 Mini Pita Poulet (1,70€ l'unité)</div>
+                <div class="product-row">
+                    <div class="product-options"></div>
+                    <input type="number" name="pita_quantity" class="quantity-input" placeholder="Qté" min="0" onchange="calculatePrice('pita', 1.7)">
+                    <div class="price-display" id="pita_price">0€</div>
+                </div>
+            </div>
+
+            <!-- Mini Wrap Poulet -->
+            <div class="product-section">
+                <div class="product-title">🌯 Mini Wrap Poulet (1,70€ l'unité)</div>
+                <div class="product-row">
+                    <div class="product-options"></div>
+                    <input type="number" name="wrap_quantity" class="quantity-input" placeholder="Qté" min="0" onchange="calculatePrice('wrap', 1.7)">
+                    <div class="price-display" id="wrap_price">0€</div>
+                </div>
+            </div>
+
+            <!-- Mini Croque Monsieur -->
+            <div class="product-section">
+                <div class="product-title">🥪 Mini Croque Monsieur Jambon (1,70€ l'unité)</div>
+                <div class="product-row">
+                    <div class="product-options"></div>
+                    <input type="number" name="croque_quantity" class="quantity-input" placeholder="Qté" min="0" onchange="calculatePrice('croque', 1.7)">
+                    <div class="price-display" id="croque_price">0€</div>
+                </div>
+            </div>
+
+            <!-- Club Sandwich -->
+            <div class="product-section">
+                <div class="product-title">🥪 Club Sandwich (1,70€ l'unité)</div>
+                <div class="product-row">
+                    <div class="product-options">
+                        <label>Saveur :</label>
+                        <select name="club_flavor">
+                            <option value="">Choisir une saveur</option>
+                            <option value="Poulet">Poulet</option>
+                            <option value="Jambon">Jambon</option>
+                            <option value="Saumon">Saumon</option>
+                            <option value="Thon">Thon</option>
+                            <option value="Végétarien">Végétarien</option>
+                        </select>
+                    </div>
+                    <input type="number" name="club_quantity" class="quantity-input" placeholder="Qté" min="0" onchange="calculatePrice('club', 1.7)">
+                    <div class="price-display" id="club_price">0€</div>
+                </div>
+            </div>
+
+            <!-- Verrine de Légume Frais -->
+            <div class="product-section">
+                <div class="product-title">🥗 Verrine de Légume Frais (2€ l'unité)</div>
+                <div class="product-row">
+                    <div class="product-options">
+                        <label>Saveur :</label>
+                        <select name="verrine_flavor">
+                            <option value="">Choisir une saveur</option>
+                            <option value="Poulet">Poulet</option>
+                            <option value="Saumon">Saumon</option>
+                            <option value="Végétarien">Végétarien</option>
+                        </select>
+                    </div>
+                    <input type="number" name="verrine_quantity" class="quantity-input" placeholder="Qté" min="0" onchange="calculatePrice('verrine', 2)">
+                    <div class="price-display" id="verrine_price">0€</div>
+                </div>
+            </div>
+
+            <!-- Samoussas -->
+            <div class="product-section">
+                <div class="product-title">🥟 Samoussas (0,60€ l'unité)</div>
+                <div class="product-row">
+                    <div class="product-options">
+                        <label>Saveur :</label>
+                        <select name="samoussa_flavor">
+                            <option value="">À déterminer en privé</option>
+                        </select>
+                    </div>
+                    <input type="number" name="samoussa_quantity" class="quantity-input" placeholder="Qté" min="0" onchange="calculatePrice('samoussa', 0.6)">
+                    <div class="price-display" id="samoussa_price">0€</div>
+                </div>
+            </div>
+
+            <!-- Mini Brochette Poulet Croustillant -->
+            <div class="product-section">
+                <div class="product-title">🍢 Mini Brochette Poulet Croustillant (1,50€ l'unité)</div>
+                <div class="product-row">
+                    <div class="product-options"></div>
+                    <input type="number" name="brochette_croustillant_quantity" class="quantity-input" placeholder="Qté" min="0" onchange="calculatePrice('brochette_croustillant', 1.5)">
+                    <div class="price-display" id="brochette_croustillant_price">0€</div>
+                </div>
+            </div>
+
+            <!-- Mini Brochette Poulet -->
+            <div class="product-section">
+                <div class="product-title">🍢 Mini Brochette Poulet (1,40€ l'unité)</div>
+                <div class="product-row">
+                    <div class="product-options"></div>
+                    <input type="number" name="brochette_poulet_quantity" class="quantity-input" placeholder="Qté" min="0" onchange="calculatePrice('brochette_poulet', 1.4)">
+                    <div class="price-display" id="brochette_poulet_price">0€</div>
+                </div>
+            </div>
+
+            <!-- Mini Viennois -->
+            <div class="product-section">
+                <div class="product-title">🥐 Mini Viennois (2€ l'unité)</div>
+                <div class="product-row">
+                    <div class="product-options">
+                        <label>Saveur :</label>
+                        <select name="viennois_flavor">
+                            <option value="">Choisir une saveur</option>
+                            <option value="Jambon-fromage">Jambon-fromage</option>
+                            <option value="Poulet-mayonnaise">Poulet-mayonnaise</option>
+                            <option value="Saumon">Saumon</option>
+                        </select>
+                    </div>
+                    <input type="number" name="viennois_quantity" class="quantity-input" placeholder="Qté" min="0" onchange="calculatePrice('viennois', 2)">
+                    <div class="price-display" id="viennois_price">0€</div>
+                </div>
+            </div>
+
+            <!-- Mini Tartine Poulet -->
+            <div class="product-section">
+                <div class="product-title">🍞 Mini Tartine Poulet (1,70€ l'unité)</div>
+                <div class="product-row">
+                    <div class="product-options"></div>
+                    <input type="number" name="tartine_poulet_quantity" class="quantity-input" placeholder="Qté" min="0" onchange="calculatePrice('tartine_poulet', 1.7)">
+                    <div class="price-display" id="tartine_poulet_price">0€</div>
+                </div>
+            </div>
+
+            <!-- Mini Tartine Saumon -->
+            <div class="product-section">
+                <div class="product-title">🍞 Mini Tartine Saumon (1,80€ l'unité)</div>
+                <div class="product-row">
+                    <div class="product-options"></div>
+                    <input type="number" name="tartine_saumon_quantity" class="quantity-input" placeholder="Qté" min="0" onchange="calculatePrice('tartine_saumon', 1.8)">
+                    <div class="price-display" id="tartine_saumon_price">0€</div>
+                </div>
+            </div>
+
+            <!-- CÔTÉ SUCRÉ -->
+            <div style="background: #02216d; color: white; padding: 15px; border-radius: 10px; text-align: center; margin: 30px 0; font-size: 1.5em; font-weight: bold;">
+                🧁 CÔTÉ SUCRÉ
+            </div>
+
+            <!-- Muffin Classique -->
+            <div class="product-section">
+                <div class="product-title">🧁 Muffin Classique (2€ l'unité)</div>
+                <div class="product-row">
+                    <div class="product-options">
+                        <label>Saveur :</label>
+                        <select name="muffin_classique_flavor">
+                            <option value="">Choisir une saveur</option>
+                            <option value="Chocolat">Chocolat</option>
+                            <option value="Caramel">Caramel</option>
+                            <option value="Oréo">Oréo</option>
+                        </select>
+                    </div>
+                    <input type="number" name="muffin_classique_quantity" class="quantity-input" placeholder="Qté" min="0" onchange="calculatePrice('muffin_classique', 2)">
+                    <div class="price-display" id="muffin_classique_price">0€</div>
+                </div>
+            </div>
+
+            <!-- Muffin Créole -->
+            <div class="product-section">
+                <div class="product-title">🧁 Muffin Créole (2€ l'unité)</div>
+                <div class="product-row">
+                    <div class="product-options">
+                        <label>Saveur :</label>
+                        <select name="muffin_creole_flavor">
+                            <option value="">Choisir une saveur</option>
+                            <option value="Patate">Patate</option>
+                            <option value="Ti son">Ti son</option>
+                            <option value="Cambar">Cambar</option>
+                            <option value="Manioc">Manioc</option>
+                        </select>
+                    </div>
+                    <input type="number" name="muffin_creole_quantity" class="quantity-input" placeholder="Qté" min="0" onchange="calculatePrice('muffin_creole', 2)">
+                    <div class="price-display" id="muffin_creole_price">0€</div>
+                </div>
+            </div>
+
+            <!-- Cookies -->
+            <div class="product-section">
+                <div class="product-title">🍪 Cookies (2€ l'unité)</div>
+                <div class="product-row">
+                    <div class="product-options">
+                        <label>Saveur :</label>
+                        <select name="cookies_flavor">
+                            <option value="">Choisir une saveur</option>
+                            <option value="Chocolat">Chocolat</option>
+                            <option value="Caramel">Caramel</option>
+                            <option value="Confiture maison selon la saison à déterminer en privé">Confiture maison selon la saison à déterminer en privé</option>
+                        </select>
+                    </div>
+                    <input type="number" name="cookies_quantity" class="quantity-input" placeholder="Qté" min="0" onchange="calculatePrice('cookies', 2)">
+                    <div class="price-display" id="cookies_price">0€</div>
+                </div>
+            </div>
+
+            <!-- Cupcakes -->
+            <div class="product-section">
+                <div class="product-title">🧁 Cupcakes (2€ l'unité)</div>
+                <div class="product-row">
+                    <div class="product-options">
+                        <label>Saveur :</label>
+                        <select name="cupcakes_flavor">
+                            <option value="">Choisir une saveur</option>
+                            <option value="Chocolat">Chocolat</option>
+                            <option value="Caramel">Caramel</option>
+                            <option value="Confiture maison selon la saison à déterminer en privé">Confiture maison selon la saison à déterminer en privé</option>
+                        </select>
+                    </div>
+                    <input type="number" name="cupcakes_quantity" class="quantity-input" placeholder="Qté" min="0" onchange="calculatePrice('cupcakes', 2)">
+                    <div class="price-display" id="cupcakes_price">0€</div>
+                </div>
+            </div>
+
+            <!-- Choux -->
+            <div class="product-section">
+                <div class="product-title">🥐 Choux (2€ l'unité)</div>
+                <div class="product-row">
+                    <div class="product-options">
+                        <label>Saveur :</label>
+                        <select name="choux_flavor">
+                            <option value="">Choisir une saveur</option>
+                            <option value="Chocolat">Chocolat</option>
+                            <option value="Caramel">Caramel</option>
+                            <option value="Autre à déterminer en privé">Autre à déterminer en privé</option>
+                        </select>
+                    </div>
+                    <input type="number" name="choux_quantity" class="quantity-input" placeholder="Qté" min="0" onchange="calculatePrice('choux', 2)">
+                    <div class="price-display" id="choux_price">0€</div>
+                </div>
+            </div>
+
+            <!-- Mini beignet -->
+            <div class="product-section">
+                <div class="product-title">🍩 Mini beignet (0,80€ l'unité)</div>
+                <div class="product-row">
+                    <div class="product-options">
+                        <label>Saveur :</label>
+                        <select name="beignet_flavor">
+                            <option value="">Choisir une saveur</option>
+                            <option value="Chocolat">Chocolat</option>
+                            <option value="Caramel">Caramel</option>
+                            <option value="Confiture maison selon la saison à déterminer en privé">Confiture maison selon la saison à déterminer en privé</option>
+                        </select>
+                    </div>
+                    <input type="number" name="beignet_quantity" class="quantity-input" placeholder="Qté" min="0" onchange="calculatePrice('beignet', 0.8)">
+                    <div class="price-display" id="beignet_price">0€</div>
+                </div>
+            </div>
+
+            <!-- Mini Crêpes -->
+            <div class="product-section">
+                <div class="product-title">🥞 Mini Crêpes (0,80€ l'unité)</div>
+                <div class="product-row">
+                    <div class="product-options">
+                        <label>Nappage :</label>
+                        <select name="crepe_nappage">
+                            <option value="">Choisir un nappage</option>
+                            <option value="Chocolat">Chocolat</option>
+                            <option value="Caramel">Caramel</option>
+                            <option value="Confiture maison selon la saison à déterminer en privé">Confiture maison selon la saison à déterminer en privé</option>
+                        </select>
+                        <label>Topping :</label>
+                        <select name="crepe_topping_select">
+                            <option value="">À déterminer en privé</option>
+                        </select>
+                    </div>
+                    <input type="number" name="crepe_quantity" class="quantity-input" placeholder="Qté" min="0" onchange="calculatePrice('crepe', 0.8)">
+                    <div class="price-display" id="crepe_price">0€</div>
+                </div>
+            </div>
+
+            <!-- Mini Pancakes -->
+            <div class="product-section">
+                <div class="product-title">🥞 Mini Pancakes (0,80€ l'unité)</div>
+                <div class="product-row">
+                    <div class="product-options">
+                        <label>Nappage :</label>
+                        <select name="pancake_nappage">
+                            <option value="">Choisir un nappage</option>
+                            <option value="Chocolat">Chocolat</option>
+                            <option value="Caramel">Caramel</option>
+                            <option value="Confiture maison selon la saison à déterminer en privé">Confiture maison selon la saison à déterminer en privé</option>
+                        </select>
+                        <label>Topping :</label>
+                        <select name="pancake_topping_select">
+                            <option value="">À déterminer en privé</option>
+                        </select>
+                    </div>
+                    <input type="number" name="pancake_quantity" class="quantity-input" placeholder="Qté" min="0" onchange="calculatePrice('pancake', 0.8)">
+                    <div class="price-display" id="pancake_price">0€</div>
+                </div>
+            </div>
+
+            <!-- Mini Gaufres -->
+            <div class="product-section">
+                <div class="product-title">🧇 Mini Gaufres (0,80€ l'unité)</div>
+                <div class="product-row">
+                    <div class="product-options">
+                        <label>Nappage :</label>
+                        <select name="waffle_nappage">
+                            <option value="">Choisir un nappage</option>
+                            <option value="Chocolat">Chocolat</option>
+                            <option value="Caramel">Caramel</option>
+                            <option value="Confiture maison selon la saison à déterminer en privé">Confiture maison selon la saison à déterminer en privé</option>
+                        </select>
+                        <label>Topping :</label>
+                        <select name="waffle_topping_select">
+                            <option value="">À déterminer en privé</option>
+                        </select>
+                    </div>
+                    <input type="number" name="waffle_quantity" class="quantity-input" placeholder="Qté" min="0" onchange="calculatePrice('waffle', 0.8)">
+                    <div class="price-display" id="waffle_price">0€</div>
+                </div>
+            </div>
+
+            <!-- Supplément Topping -->
+            <div class="product-section">
+                <div class="product-title">✨ Supplément Topping (0,50€ l'unité)</div>
+                <div class="product-row">
+                    <div class="product-options">
+                        <label>Saveur :</label>
+                        <select name="supplement_flavor">
+                            <option value="">À déterminer en privé</option>
+                        </select>
+                    </div>
+                    <input type="number" name="supplement_quantity" class="quantity-input" placeholder="Qté" min="0" onchange="calculatePrice('supplement', 0.5)">
+                    <div class="price-display" id="supplement_price">0€</div>
+                </div>
+            </div>
+
+            <!-- LES BOX' DÉCOUVERTES -->
+            <div style="background: #02216d; color: white; padding: 15px; border-radius: 10px; text-align: center; margin: 30px 0; font-size: 1.5em; font-weight: bold;">
+                📦 LES BOX' DÉCOUVERTES
+            </div>
+
+            <!-- La Box' Salée -->
+            <div class="product-section">
+                <div class="product-title">📦 La Box' Salée (16€ l'unité)</div>
+                <div style="background: #f8debd; padding: 10px; border-radius: 5px; margin-bottom: 15px; font-size: 0.9em;">
+                    <strong>Composition :</strong> 5 Minis Burgers Poulet ou Saumon au choix + 5 Minis Pitas Poulet ou Saumon au choix
+                </div>
+                <div class="product-row">
+                    <div class="product-options"></div>
+                    <input type="number" name="box_salee_quantity" class="quantity-input" placeholder="Qté" min="0" onchange="calculatePrice('box_salee', 16)">
+                    <div class="price-display" id="box_salee_price">0€</div>
+                </div>
+            </div>
+
+            <!-- La Box' Sucrée -->
+            <div class="product-section">
+                <div class="product-title">📦 La Box' Sucrée (20€ l'unité)</div>
+                <div style="background: #f8debd; padding: 10px; border-radius: 5px; margin-bottom: 15px; font-size: 0.9em;">
+                    <strong>Composition :</strong> 5 Choux au choix + 5 Cupcakes au choix
+                </div>
+                <div class="product-row">
+                    <div class="product-options"></div>
+                    <input type="number" name="box_sucree_quantity" class="quantity-input" placeholder="Qté" min="0" onchange="calculatePrice('box_sucree', 20)">
+                    <div class="price-display" id="box_sucree_price">0€</div>
+                </div>
+            </div>
+
+            <!-- La Mixte -->
+            <div class="product-section">
+                <div class="product-title">📦 La Mixte (28€ l'unité)</div>
+                <div style="background: #f8debd; padding: 10px; border-radius: 5px; margin-bottom: 15px; font-size: 0.9em;">
+                    <strong>Composition :</strong> 5 Minis Burgers Poulet ou Saumon au choix + 5 Minis Pitas Poulet ou Saumon au choix + 5 Choux au choix + 5 Cupcakes au choix
+                </div>
+                <div class="product-row">
+                    <div class="product-options"></div>
+                    <input type="number" name="box_mixte_quantity" class="quantity-input" placeholder="Qté" min="0" onchange="calculatePrice('box_mixte', 28)">
+                    <div class="price-display" id="box_mixte_price">0€</div>
+                </div>
+            </div>
+
+            <!-- Informations client -->
+            <div class="customer-section">
+                <h3 class="section-title">👤 Vos informations</h3>
+                <div class="form-group">
+                    <label>Nom complet :</label>
+                    <input type="text" name="customer_name" required>
+                </div>
+                <div class="form-group">
+                    <label>Téléphone :</label>
+                    <input type="tel" name="customer_phone" required>
+                </div>
+                <div class="form-group">
+                    <label>Email :</label>
+                    <input type="email" name="customer_email" required>
+                </div>
+            </div>
+
+            <!-- Livraison -->
+            <div class="delivery-section">
+                <h3 class="section-title">🚚 Adresse de livraison</h3>
+                <div class="form-group">
+                    <label>Zone de livraison :</label>
+                    <select name="delivery_zone" onchange="updateDeliveryInfo()" required>
+                        <option value="">Choisir votre zone</option>
+                        <optgroup label="Livraison gratuite - Secteur Nord">
+                            <option value="La Bretagne bas|0">La Bretagne bas</option>
+                            <option value="Domenjod|0">Domenjod</option>
+                            <option value="Rivière des pluies|0">Rivière des pluies</option>
+                            <option value="Sainte-Clotilde|0">Sainte-Clotilde</option>
+                            <option value="Chaudron|0">Chaudron</option>
+                            <option value="Moufia|0">Moufia</option>
+                            <option value="Bois de Nèfles|0">Bois de Nèfles</option>
+                            <option value="Montgaillard|0">Montgaillard</option>
+                        </optgroup>
+                        <optgroup label="Secteur Ouest - Point relais">
+                            <option value="Saint-Denis Centre - Ancien 3 Brasseurs près de la gare|2">Saint-Denis Centre - Ancien 3 Brasseurs (2€)</option>
+                            <option value="Possession/Le Port - Cap Sacré Coeur|3">Possession/Le Port - Cap Sacré Coeur (3€)</option>
+                            <option value="Saint-Gilles - Parking Boucan|10">Saint-Gilles - Parking Boucan (10€)</option>
+                        </optgroup>
+                        <optgroup label="Secteur Est - Point relais">
+                            <option value="Sainte-Marie - Run Market|2">Sainte-Marie - Run Market (2€)</option>
+                            <option value="Sainte-Suzanne - Carrefour|3">Sainte-Suzanne - Carrefour (3€)</option>
+                            <option value="Saint-André - BK rond point balance|5">Saint-André - BK rond point balance (5€)</option>
+                            <option value="Saint-Benoit - Parking Mc Donald's|7">Saint-Benoit - Parking Mc Donald's (7€)</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Adresse complète :</label>
+                    <textarea name="delivery_address" id="delivery_address" rows="3" placeholder="Votre adresse complète" required></textarea>
+                </div>
+            </div>
+
+            <!-- Récapitulatif -->
+            <div class="cart-summary">
+                <h3 class="section-title">🛒 Votre panier</h3>
+                <div id="cart-items">
+                    <p style="text-align: center; color: #b28538;">Votre panier est vide</p>
+                </div>
+            </div>
+
+            <!-- Total -->
+            <div class="total-section">
+                <h3 class="section-title" style="color: white;">💰 Total de votre commande</h3>
+                <div class="total-line">
+                    <span>Sous-total produits :</span>
+                    <span id="subtotal">0€</span>
+                </div>
+                <div class="total-line">
+                    <span>Livraison :</span>
+                    <span id="delivery-cost">À définir</span>
+                </div>
+                <div class="total-line total-final">
+                    <span>TOTAL :</span>
+                    <span id="total-final">0€</span>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">📧 Envoyer ma commande</button>
+        </form>
+    </div>
+
+    <script>
+        let cart = {};
+        let deliveryCost = 0;
+
+        function calculatePrice(product, unitPrice) {
+            const quantity = parseInt(document.querySelector(`input[name="${product}_quantity"]`).value) || 0;
+            const priceElement = document.getElementById(`${product}_price`);
+            
+            if (quantity === 0) {
+                priceElement.textContent = '0€';
+                delete cart[product];
+            } else if (quantity < 10) {
+                priceElement.textContent = 'Minimum 10 pièces';
+                priceElement.style.background = '#ff6b6b';
+                priceElement.style.color = 'white';
+                delete cart[product];
+            } else {
+                const total = quantity * unitPrice;
+                priceElement.textContent = total.toFixed(2) + '€';
+                priceElement.style.background = '#ceb290';
+                priceElement.style.color = '#02216d';
+                cart[product] = { quantity, unitPrice, total };
+            }
+            
+            updateCartSummary();
+            updateTotal();
+        }
+
+        function updateDeliveryInfo() {
+            const deliverySelect = document.querySelector('select[name="delivery_zone"]');
+            const addressField = document.getElementById('delivery_address');
+            const selectedValue = deliverySelect.value;
+            
+            if (selectedValue) {
+                const [location, cost] = selectedValue.split('|');
+                deliveryCost = parseInt(cost);
+                
+                // Si c'est une livraison gratuite (secteur Nord), l'adresse est requise
+                if (cost === '0') {
+                    addressField.disabled = false;
+                    addressField.required = true;
+                    addressField.placeholder = "Votre adresse complète";
+                    addressField.style.backgroundColor = "white";
+                    addressField.style.color = "#333";
+                } else {
+                    // Si c'est un point relais (secteur Est/Ouest), bloquer le champ
+                    addressField.disabled = true;
+                    addressField.required = false;
+                    addressField.value = "Point relais : " + location;
+                    addressField.style.backgroundColor = "#f0f0f0";
+                    addressField.style.color = "#666";
+                }
+                
+                updateTotal();
+            } else {
+                // Réinitialiser le champ si aucune zone n'est sélectionnée
+                addressField.disabled = false;
+                addressField.required = true;
+                addressField.value = "";
+                addressField.placeholder = "Votre adresse complète";
+                addressField.style.backgroundColor = "white";
+                addressField.style.color = "#333";
+            }
+        }
+
+        function updateCartSummary() {
+            const cartItems = document.getElementById('cart-items');
+            
+            if (Object.keys(cart).length === 0) {
+                cartItems.innerHTML = '<p style="text-align: center; color: #b28538;">Votre panier est vide</p>';
+                return;
+            }
+
+            let html = '';
+            const productNames = {
+                'panini': 'Mini Panini',
+                'burger_poulet': 'Mini Burger Poulet',
+                'burger_saumon': 'Mini Burger Saumon',
+                'pizza': 'Mini Pizza Olives',
+                'hotdog': 'Mini Hot Dog',
+                'pita': 'Mini Pita Poulet',
+                'wrap': 'Mini Wrap Poulet',
+                'croque': 'Mini Croque Monsieur Jambon',
+                'club': 'Club Sandwich',
+                'verrine': 'Verrine de Légume Frais',
+                'samoussa': 'Samoussas',
+                'brochette_croustillant': 'Mini Brochette Poulet Croustillant',
+                'brochette_poulet': 'Mini Brochette Poulet',
+                'viennois': 'Mini Viennois',
+                'tartine_poulet': 'Mini Tartine Poulet',
+                'tartine_saumon': 'Mini Tartine Saumon',
+                'muffin_classique': 'Muffin Classique',
+                'muffin_creole': 'Muffin Créole',
+                'cookies': 'Cookies',
+                'cupcakes': 'Cupcakes',
+                'choux': 'Choux',
+                'beignet': 'Mini beignet',
+                'crepe': 'Mini Crêpes',
+                'pancake': 'Mini Pancakes',
+                'waffle': 'Mini Gaufres',
+                'supplement': 'Supplément Topping',
+                'box_salee': 'La Box\' Salée',
+                'box_sucree': 'La Box\' Sucrée',
+                'box_mixte': 'La Mixte'
+            };
+
+            for (const [product, data] of Object.entries(cart)) {
+                html += `
+                    <div class="cart-item">
+                        <strong>${productNames[product]}</strong><br>
+                        Quantité: ${data.quantity} × ${data.unitPrice}€ = <strong>${data.total.toFixed(2)}€</strong>
+                    </div>
+                `;
+            }
+            
+            cartItems.innerHTML = html;
+        }
+
+        function updateTotal() {
+            const subtotal = Object.values(cart).reduce((sum, item) => sum + item.total, 0);
+            const total = subtotal + deliveryCost;
+            
+            document.getElementById('subtotal').textContent = subtotal.toFixed(2) + '€';
+            
+            if (subtotal >= 100) {
+                document.getElementById('delivery-cost').textContent = 'Livraison offerte';
+                document.getElementById('total-final').textContent = subtotal.toFixed(2) + '€';
+            } else if (deliveryCost === 0) {
+                document.getElementById('delivery-cost').textContent = 'Livraison offerte';
+                document.getElementById('total-final').textContent = total.toFixed(2) + '€';
+            } else {
+                document.getElementById('delivery-cost').textContent = deliveryCost.toFixed(2) + '€';
+                document.getElementById('total-final').textContent = total.toFixed(2) + '€';
+            }
+        }
+
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Vérifier qu'il y a au moins un produit dans le panier
+            if (Object.keys(cart).length === 0) {
+                alert('Veuillez ajouter au moins un produit à votre commande (minimum 10 pièces par variété).');
+                return;
+            }
+
+            // Collecter toutes les données du formulaire
+            const formData = new FormData(this);
+            let orderDetails = "NOUVELLE COMMANDE PÂTISSERIES\n\n";
+            
+            // Informations client
+            orderDetails += "=== INFORMATIONS CLIENT ===\n";
+            orderDetails += `Nom: ${formData.get('customer_name')}\n`;
+            orderDetails += `Téléphone: ${formData.get('customer_phone')}\n`;
+            orderDetails += `Email: ${formData.get('customer_email')}\n\n`;
+            
+            // Détails de la commande
+            orderDetails += "=== DÉTAILS DE LA COMMANDE ===\n";
+            
+            const productNames = {
+                'panini': 'Mini Panini (1,70€)',
+                'burger_poulet': 'Mini Burger Poulet (1,70€)',
+                'burger_saumon': 'Mini Burger Saumon (1,80€)',
+                'pizza': 'Mini Pizza Olives (1,80€)',
+                'hotdog': 'Mini Hot Dog (1,70€)',
+                'pita': 'Mini Pita Poulet (1,70€)',
+                'wrap': 'Mini Wrap Poulet (1,70€)',
+                'croque': 'Mini Croque Monsieur Jambon (1,70€)',
+                'club': 'Club Sandwich (1,70€)',
+                'verrine': 'Verrine de Légume Frais (2€)',
+                'samoussa': 'Samoussas (0,60€)',
+                'brochette_croustillant': 'Mini Brochette Poulet Croustillant (1,50€)',
+                'brochette_poulet': 'Mini Brochette Poulet (1,40€)',
+                'viennois': 'Mini Viennois (2€)',
+                'tartine_poulet': 'Mini Tartine Poulet (1,70€)',
+                'tartine_saumon': 'Mini Tartine Saumon (1,80€)',
+                'muffin_classique': 'Muffin Classique (2€)',
+                'muffin_creole': 'Muffin Créole (2€)',
+                'cookies': 'Cookies (2€)',
+                'cupcakes': 'Cupcakes (2€)',
+                'choux': 'Choux (2€)',
+                'beignet': 'Mini beignet (0,80€)',
+                'crepe': 'Mini Crêpes (0,80€)',
+                'pancake': 'Mini Pancakes (0,80€)',
+                'waffle': 'Mini Gaufres (0,80€)',
+                'supplement': 'Supplément Topping (0,50€)',
+                'box_salee': 'La Box\' Salée (16€)',
+                'box_sucree': 'La Box\' Sucrée (20€)',
+                'box_mixte': 'La Mixte (28€)'
+            };
+
+            for (const [product, data] of Object.entries(cart)) {
+                orderDetails += `\n${productNames[product]}:\n`;
+                orderDetails += `- Quantité: ${data.quantity}\n`;
+                orderDetails += `- Prix total: ${data.total.toFixed(2)}€\n`;
+                
+                // Ajouter les détails spécifiques selon le produit
+                if (product === 'panini') {
+                    if (formData.get('panini_flavor')) orderDetails += `- Saveur: ${formData.get('panini_flavor')}\n`;
+                } else if (product === 'club') {
+                    if (formData.get('club_flavor')) orderDetails += `- Saveur: ${formData.get('club_flavor')}\n`;
+                } else if (product === 'verrine') {
+                    if (formData.get('verrine_flavor')) orderDetails += `- Saveur: ${formData.get('verrine_flavor')}\n`;
+                } else if (product === 'samoussa') {
+                    if (formData.get('samoussa_flavor')) orderDetails += `- Saveur: ${formData.get('samoussa_flavor')}\n`;
+                } else if (product === 'viennois') {
+                    if (formData.get('viennois_flavor')) orderDetails += `- Saveur: ${formData.get('viennois_flavor')}\n`;
+                } else if (product === 'muffin_classique') {
+                    if (formData.get('muffin_classique_flavor')) orderDetails += `- Saveur: ${formData.get('muffin_classique_flavor')}\n`;
+                } else if (product === 'muffin_creole') {
+                    if (formData.get('muffin_creole_flavor')) orderDetails += `- Saveur: ${formData.get('muffin_creole_flavor')}\n`;
+                } else if (product === 'cookies') {
+                    if (formData.get('cookies_flavor')) orderDetails += `- Saveur: ${formData.get('cookies_flavor')}\n`;
+                } else if (product === 'cupcakes') {
+                    if (formData.get('cupcakes_flavor')) orderDetails += `- Saveur: ${formData.get('cupcakes_flavor')}\n`;
+                } else if (product === 'choux') {
+                    if (formData.get('choux_flavor')) orderDetails += `- Saveur: ${formData.get('choux_flavor')}\n`;
+                } else if (product === 'beignet') {
+                    if (formData.get('beignet_flavor')) orderDetails += `- Saveur: ${formData.get('beignet_flavor')}\n`;
+                } else if (product === 'crepe') {
+                    if (formData.get('crepe_nappage')) orderDetails += `- Nappage: ${formData.get('crepe_nappage')}\n`;
+                    if (formData.get('crepe_topping_select')) orderDetails += `- Topping: ${formData.get('crepe_topping_select')}\n`;
+                } else if (product === 'pancake') {
+                    if (formData.get('pancake_nappage')) orderDetails += `- Nappage: ${formData.get('pancake_nappage')}\n`;
+                    if (formData.get('pancake_topping_select')) orderDetails += `- Topping: ${formData.get('pancake_topping_select')}\n`;
+                } else if (product === 'waffle') {
+                    if (formData.get('waffle_nappage')) orderDetails += `- Nappage: ${formData.get('waffle_nappage')}\n`;
+                    if (formData.get('waffle_topping_select')) orderDetails += `- Topping: ${formData.get('waffle_topping_select')}\n`;
+                } else if (product === 'supplement') {
+                    if (formData.get('supplement_flavor')) orderDetails += `- Saveur: ${formData.get('supplement_flavor')}\n`;
+                }
+            }
+            
+            // Livraison
+            orderDetails += "\n=== LIVRAISON ===\n";
+            const deliveryZone = formData.get('delivery_zone');
+            if (deliveryZone) {
+                const [location, cost] = deliveryZone.split('|');
+                orderDetails += `Zone: ${location}\n`;
+            }
+            orderDetails += `Adresse: ${formData.get('delivery_address')}\n`;
+            
+            // Total
+            const subtotal = Object.values(cart).reduce((sum, item) => sum + item.total, 0);
+            orderDetails += "\n=== RÉCAPITULATIF FINANCIER ===\n";
+            orderDetails += `Sous-total produits: ${subtotal.toFixed(2)}€\n`;
+            
+            if (subtotal >= 100) {
+                orderDetails += `Livraison: OFFERTE (commande ≥ 100€)\n`;
+                orderDetails += `TOTAL: ${subtotal.toFixed(2)}€\n`;
+            } else if (deliveryCost === 0) {
+                orderDetails += `Livraison: OFFERTE\n`;
+                orderDetails += `TOTAL: ${subtotal.toFixed(2)}€\n`;
+            } else {
+                orderDetails += `Livraison: ${deliveryCost.toFixed(2)}€\n`;
+                orderDetails += `TOTAL: ${(subtotal + deliveryCost).toFixed(2)}€\n`;
+            }
+            
+            orderDetails += "\nPaiement: En espèces à la livraison\n";
+            
+            // Créer le lien mailto
+            const subject = encodeURIComponent("Nouvelle commande pâtisseries");
+            const body = encodeURIComponent(orderDetails);
+            const mailtoLink = `mailto:aperoetgourmandiz@gmail.com?subject=${subject}&body=${body}`;
+            
+            // Ouvrir le client email
+            window.location.href = mailtoLink;
+            
+            // Afficher un message de confirmation
+            alert("Votre commande va s'ouvrir dans votre application email. Envoyez l'email pour finaliser votre commande !");
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9707bcdc14eb3843',t:'MTc1NTQxODY3NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
